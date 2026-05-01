@@ -1,235 +1,167 @@
-# 🚀 Team Task Manager (Full-Stack | Production Deployed)
+# 🚀 Team Task Manager (Full-Stack | Flask)
 
-A scalable full-stack team collaboration platform designed to manage projects, assign tasks, and enforce role-based workflows in real time.
+A full-stack web application that enables users to create projects, assign tasks, and track progress with **role-based access control (Admin / Member)**.
 
 🔗 **Live Demo:**
-👉 [https://team-task-manager-full-stack-production-3cc0.up.railway.app](https://team-task-manager-full-stack-production-3cc0.up.railway.app)
+👉 https://team-task-manager-production-af20.up.railway.app/
 
 ---
 
-## 📌 Overview
+## 📌 Assignment Objective
 
-This project is a **production-ready task management system** that enables teams to efficiently collaborate through structured workflows, secure authentication, and role-based access control.
+Build a web app where:
 
-It is built with a focus on:
-
-* Clean backend architecture
-* Real-world API design
-* Secure authentication flows
-* Scalable deployment
+* Users can create projects
+* Assign and manage tasks
+* Track progress through a dashboard
+* Enforce role-based access (Admin / Member)
 
 ---
 
-## 🧠 Key Highlights
+## 🚀 Key Features
 
-* 🔐 Secure Authentication using JWT + bcrypt
-* 👥 Role-Based Access (Admin / Member)
-* 📊 Real-Time Dashboard Insights
-* 🧩 Modular REST API Design
-* ⚡ Lightweight & Fast (SQLite + Node.js)
-* 🌐 Fully Deployed on Railway
+### 🔐 Authentication
+
+* User Signup & Login
+* Secure password hashing
+
+### 👥 Role-Based Access Control
+
+* **Admin**
+
+  * Create projects
+  * Assign tasks
+  * Manage tasks
+* **Member**
+
+  * View assigned tasks
+  * Update task status
+
+### 📁 Project Management
+
+* Create and manage projects
+* Link tasks to specific projects
+
+### 📝 Task Management
+
+* Create tasks with:
+
+  * Title
+  * Description
+  * Deadline
+* Assign tasks to users
+* Track task status:
+
+  * Pending
+  * In Progress
+  * Completed
+
+### 📊 Dashboard
+
+* Total tasks
+* Completed tasks
+* Pending tasks
+* Overdue tasks
+
+---
+
+## ⚙️ Requirements Covered
+
+✔ REST APIs implemented (basic endpoints)
+✔ Database integration (SQLite + SQLAlchemy)
+✔ Proper relationships:
+
+* User ↔ Task
+* Project ↔ Task
+
+✔ Role-based access control
+✔ Input validation (basic form validation)
+
+---
+
+## 🔌 REST API Endpoints
+
+| Method | Endpoint      | Description      |
+| ------ | ------------- | ---------------- |
+| GET    | /api/tasks    | Get all tasks    |
+| POST   | /api/tasks    | Create new task  |
+| GET    | /api/projects | Get all projects |
 
 ---
 
 ## ⚙️ Tech Stack
 
-| Layer          | Technology                       |
-| -------------- | -------------------------------- |
-| Backend        | Node.js, Express                 |
-| Database       | SQLite (better-sqlite3)          |
-| Authentication | JWT, bcrypt                      |
-| Frontend       | Vanilla JavaScript, Tailwind CSS |
-| Deployment     | Railway                          |
+| Layer      | Technology           |
+| ---------- | -------------------- |
+| Backend    | Flask (Python)       |
+| Database   | SQLite               |
+| ORM        | SQLAlchemy           |
+| Frontend   | HTML, CSS, Bootstrap |
+| Auth       | Flask-Login          |
+| Deployment | Railway              |
 
 ---
 
-## ✨ Features
-
-### 🔑 Authentication
-
-* User signup & login with JWT-based sessions
-* Secure password hashing using bcrypt
-
----
-
-### 📁 Project Management
-
-* Create and manage projects
-* Project creator automatically assigned as **Admin**
-* Add/remove members using email
-* Update user roles dynamically
-
----
-
-### 📝 Task Management
-
-* Admin can:
-
-  * Create, assign, update, delete tasks
-* Members can:
-
-  * Update status of assigned tasks
-
----
-
-### 📊 Dashboard
-
-* Total task counts
-* Personal task tracking
-* Overdue task indicators
-* Real-time visibility of project progress
-
----
-
-### 🔒 Access Control
-
-* Role-based permissions enforced at backend level
-* Admin vs Member capabilities clearly separated
-
----
-
-## 🏗️ System Architecture
-
-```
-Frontend (Vanilla JS + Tailwind)
-        ↓
-REST API (Node.js + Express)
-        ↓
-SQLite Database (better-sqlite3)
-        ↓
-Authentication Layer (JWT)
-```
-
----
-
-## 🚀 Getting Started (Local Setup)
+## 🚀 Local Setup
 
 ```bash
-# Install dependencies
-npm install
+# Create virtual environment
+python -m venv venv
 
-# Start server
-npm start
+# Activate
+venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run app
+python app.py
 ```
 
 Open:
-👉 [http://localhost:3000](http://localhost:3000)
+👉 http://127.0.0.1:5000
 
 ---
 
-## 🔐 Environment Variables
+## 🌐 Deployment
 
-| Variable   | Default Value        | Description                   |
-| ---------- | -------------------- | ----------------------------- |
-| PORT       | 3000                 | Server port                   |
-| JWT_SECRET | dev-secret-change-me | Change in production          |
-| DB_PATH    | ./data/app.db        | Use `/data/app.db` in Railway |
+This application is deployed using Railway.
 
----
+Steps:
 
-## ☁️ Deployment (Railway)
+1. Push code to GitHub
+2. Deploy using Railway
+3. Add:
 
-This project is deployed using **Railway** with persistent storage.
-
-### Steps:
-
-1. Push project to GitHub
-2. Deploy via Railway → “Deploy from GitHub”
-3. Add environment variables:
-
-   * `JWT_SECRET`
-   * `DB_PATH=/data/app.db`
-4. Attach volume at `/data`
-
-Railway automatically handles:
-
-* Build (`npm install`)
-* Start (`npm start`)
-
----
-
-## 🔌 API Endpoints (Summary)
-
-### Auth
-
-```
-POST   /api/auth/signup
-POST   /api/auth/login
-GET    /api/auth/me
-```
-
-### Projects
-
-```
-GET    /api/projects
-POST   /api/projects
-GET    /api/projects/:id
-DELETE /api/projects/:id              (Admin)
-```
-
-### Members
-
-```
-POST   /api/projects/:id/members
-PUT    /api/projects/:id/members/:userId
-DELETE /api/projects/:id/members/:userId
-```
-
-### Tasks
-
-```
-GET    /api/projects/:id/tasks
-POST   /api/projects/:id/tasks        (Admin)
-PUT    /api/tasks/:taskId             (Role-based)
-DELETE /api/tasks/:taskId             (Admin)
-```
-
-### Dashboard
-
-```
-GET    /api/dashboard
-```
+   * requirements.txt
+   * Procfile
+4. App runs live
 
 ---
 
 ## 👤 Role Permissions
 
-| Role   | Permissions                             |
-| ------ | --------------------------------------- |
-| Admin  | Full control (projects, members, tasks) |
-| Member | Update assigned task status             |
+| Role   | Permissions                   |
+| ------ | ----------------------------- |
+| Admin  | Create projects, assign tasks |
+| Member | Update task status            |
 
 ---
 
-## 📈 Real-World Relevance
+## 📈 Conclusion
 
-This project demonstrates:
+This project successfully fulfills the assignment requirements by implementing:
 
-* Backend system design
-* API structuring
-* Authentication flows
-* Data modeling
+* Authentication system
+* Project and task management
 * Role-based access control
-
-It reflects real-world use cases such as:
-
-* Team collaboration tools
-* Project tracking systems
-* SaaS workflow platforms
+* Dashboard for tracking progress
+* REST APIs
+* Live deployment
 
 ---
 
-## 🔮 Future Improvements
+## 👩‍💻 Author
 
-* WebSocket-based real-time updates
-* Notifications system
-* Multi-project analytics
-* Role hierarchy (Manager, Viewer)
-* Migration to PostgreSQL for scalability
-
----
-
-## 👨‍💻 Author
-
-**Shourya Mukhi**
-Computer Science Engineer | Full-Stack Developer
+Kavya Jain
+B.Tech CSE
